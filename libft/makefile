@@ -48,6 +48,7 @@ SRC = ft_atoi.c	\
 	ft_toupper.c\
 	ft_intlen.c\
 	ft_uitoa.c\
+	ft_itoa_hex.c\
 
 OBJ = $(SRC:.c=.o)
 

@@ -34,6 +34,17 @@ int ft_printf(const char *format, ...)
 				str_arg = va_arg(vl, char *);
 
 			}
+            else if (format[i] == 'c')
+            {
+                char c = (char)va_arg(vl, int);
+                str_arg = &c;
+                *(str_arg + 1) = 0;
+            }
+            else if (format[i] == 'p')
+            {
+                unsigned long long n = va_arg(vl, unsigned long long);
+                str_arg = ft_itoa_hex(n);
+            }
 			else if (format[i] == 'd' || format[i] == 'i')
             {
 			    str_arg = ft_itoa(va_arg(vl, int));
@@ -42,12 +53,7 @@ int ft_printf(const char *format, ...)
             {
                 str_arg = ft_uitoa(va_arg(vl, int));
             }
-			else if (format[i] == 'c')
-            {
-			    char c = (char)va_arg(vl, int);
-                str_arg = &c;
-                *(str_arg + 1) = 0;
-            }
+
             strarglen = ft_strlen(str_arg);
             ft_strlcpy(&buff[j], str_arg, strarglen + 1);
             j += strarglen;

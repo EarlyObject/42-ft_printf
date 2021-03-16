@@ -70,5 +70,6 @@ void			ft_lstiter(t_list *lst, void (*f)(void *));
 t_list			*ft_lstmap(t_list *lst, void *(*f)(void *),
 				void (*del)(void *));
 char            *ft_uitoa(unsigned int n);
+char            *ft_itoa_hex(unsigned long long i);
 
 #endif
