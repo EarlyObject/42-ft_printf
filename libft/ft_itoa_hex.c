@@ -23,13 +23,13 @@ char* ft_itoa_hex(unsigned long long num, char format)
     if (!(p = malloc(sizeof(char) * (len + 1))))
         return (0);
     p[len--] = '\0';
-    while (num>= 16 && len > 0)
+    while (num >= 16 && len > 0)
     {
         rmd = num % 16;
         num = num / 16;
         *(p + len--) = (format == 'X' && rmd > 9) ? base[rmd] - 32 : base[rmd];
     }
-    *(p + len--) = (format == 'X' && rmd > 9) ? base[num] - 32 : base[num];
+    *(p + len--) = (format == 'X') ? base[num] - 32 : base[num];
     if (!format)
     {
         while (len > 1)

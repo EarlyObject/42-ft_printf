@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asydykna <asydykna@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asydykna <asydykna@student.42.fr>          +#+  +:+       +#+        *//**/
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 17:05:38 by asydykna          #+#    #+#             */
 /*   Updated: 2021/03/12 14:32:33 by asydykna         ###   ########.fr       */
@@ -17,28 +17,38 @@
 
 int ft_printf(const char *format, ...)
 {
-	va_list vl; 
+	va_list vl;
 	int i = 0, j=0;
-	char buff[300] = {0};
 	char *str_arg;
 	int strarglen;
+	int width;
+	int memreserved;
 
-	va_start(vl, format);
+    memreserved = 0;
+    va_start(vl, format);
 	while (format && format[i])
 	{
 		if(format[i] == '%')
 		{
 			i++;
+            width = 0;
+            while (format[i] >= '0' && format[i] <= '9')
+            {
+                width *= 10;
+                width += format[i] - '0';
+                i++;
+            }
 			if(format[i] == 's')
 			{
 				str_arg = va_arg(vl, char *);
-
 			}
             else if (format[i] == 'c')
             {
                 char c = (char)va_arg(vl, int);
-                str_arg = &c;
-                *(str_arg + 1) = 0;
+                str_arg = (char *)malloc(2 * sizeof(char));
+                *str_arg = c;
+                *(str_arg + 1) = '\0';
+                memreserved = 1;
             }
             else if (format[i] == 'p')
             {
@@ -58,19 +68,35 @@ int ft_printf(const char *format, ...)
                 unsigned long long n = va_arg(vl, unsigned int);
                 str_arg = ft_itoa_hex(n, format[i]);
             }
-
+            else
+            {
+                //TODO: implement this part
+                //errno = EINVAL;
+                j = -1;
+                str_arg = "";
+              //  break;
+            }
+            if(str_arg == NULL)
+                str_arg = "(null)";
             strarglen = ft_strlen(str_arg);
-            ft_strlcpy(&buff[j], str_arg, strarglen + 1);
+            if (strarglen < width)
+            {
+                int tlen = width - strarglen;
+                while (tlen-- > 0)
+                    ft_putchar_fd(' ', 1);
+            }
+            ft_putstr_fd(str_arg,1);
+            if(memreserved)
+                free(str_arg);
             j += strarglen;
 		}
 		else
 		{
-			buff[j] = format[i];
+		    ft_putchar_fd(format[i], 1);
 			j++;
 		}
 		i++;
 	}
-	ft_putstr_fd(buff, 1);
 	va_end(vl);
 	return (j);
 }
