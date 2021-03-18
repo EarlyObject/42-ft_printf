@@ -12,27 +12,31 @@
 
 #include "libft.h"
 
-char* ft_itoa_hex(unsigned long long number)
+char* ft_itoa_hex(unsigned long long num, char format)
 {
     char *p;
     char base[16] = "0123456789abcdef";
     int len;
-    unsigned int remainder;
-
-    len = 14;
+    
+    unsigned int rmd;
+    len = format ? 8 : 14;
     if (!(p = malloc(sizeof(char) * (len + 1))))
         return (0);
     p[len--] = '\0';
-    while (number>= 16)
+    while (num>= 16 && len > 0)
     {
-        remainder = number % 16;
-        number = number / 16;
-        *(p + len--)= base[remainder];
+        rmd = num % 16;
+        num = num / 16;
+        *(p + len--) = (format == 'X' && rmd > 9) ? base[rmd] - 32 : base[rmd];
     }
-    *(p + len--) = base[number];
-    while (len > 1)
+    *(p + len--) = (format == 'X' && rmd > 9) ? base[num] - 32 : base[num];
+    if (!format)
+    {
+        while (len > 1)
+            *(p + len--) = '0';
+        *(p + len--) = 'x';
         *(p + len--) = '0';
-    *(p + len--) = 'x';
-    *(p + len--) = '0';
+    }
+
     return (p);
 }

@@ -43,7 +43,7 @@ int ft_printf(const char *format, ...)
             else if (format[i] == 'p')
             {
                 unsigned long long n = va_arg(vl, unsigned long long);
-                str_arg = ft_itoa_hex(n);
+                str_arg = ft_itoa_hex(n, 0);
             }
 			else if (format[i] == 'd' || format[i] == 'i')
             {
@@ -52,6 +52,11 @@ int ft_printf(const char *format, ...)
 			else if (format[i] == 'u')
             {
                 str_arg = ft_uitoa(va_arg(vl, int));
+            }
+            else if (format[i] == 'X' || format[i] == 'x')
+            {
+                unsigned long long n = va_arg(vl, unsigned int);
+                str_arg = ft_itoa_hex(n, format[i]);
             }
 
             strarglen = ft_strlen(str_arg);
