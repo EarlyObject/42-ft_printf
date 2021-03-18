@@ -23,7 +23,10 @@ int ft_printf(const char *format, ...)
 	int strarglen;
 	int width;
 	int memreserved;
+	char pad;
+	int minusflag;
 
+    minusflag = 0;
     memreserved = 0;
     va_start(vl, format);
 	while (format && format[i])
@@ -32,11 +35,27 @@ int ft_printf(const char *format, ...)
 		{
 			i++;
             width = 0;
+            while (format[i] == '-' || format[i] == '0')
+            {
+                if(format[i] == '0')
+                {
+                    pad = '0';
+                }
+                else if(format[i] == '-')
+                {
+                    minusflag = 1;
+                }
+                i++;
+            }
             while (format[i] >= '0' && format[i] <= '9')
             {
                 width *= 10;
                 width += format[i] - '0';
                 i++;
+            }
+            if(format[i] == '.' )
+            {
+                //TODO
             }
 			if(format[i] == 's')
 			{
@@ -79,11 +98,11 @@ int ft_printf(const char *format, ...)
             if(str_arg == NULL)
                 str_arg = "(null)";
             strarglen = ft_strlen(str_arg);
-            if (strarglen < width)
+            if (strarglen < width && !minusflag)
             {
                 int tlen = width - strarglen;
                 while (tlen-- > 0)
-                    ft_putchar_fd(' ', 1);
+                    ft_putchar_fd(pad ? pad : ' ', 1);
             }
             ft_putstr_fd(str_arg,1);
             if(memreserved)
