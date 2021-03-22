@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asydykna <asydykna@student.42.fr>          +#+  +:+       +#+        *//**/
+/*   By: asydykna <asydykna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 17:05:38 by asydykna          #+#    #+#             */
 /*   Updated: 2021/03/12 14:32:33 by asydykna         ###   ########.fr       */
@@ -23,6 +23,7 @@ int ft_printf(const char *format, ...)
         return (0);
     input->format = format;
     va_start(input->arguments, format);
+    input->length = 0;
     while (*input->format)
     {
         while (*input->format && *input->format != '%')

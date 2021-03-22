@@ -17,41 +17,68 @@ void ft_manage_input(t_input *input)
     int len;
     int diff;
     int printlen;
+    int m_sign_width;
     ft_manage_flags(input);
     ft_manage_width(input);
     ft_manage_precision(input);
     ft_manage_format(input);
     len = ft_strlen(input->output);
     diff = input->width - len;
-    if (!input->flags[e_minus] && !input->precision_flag)
+    //manage -sign
+    if(input->flags[e_minus])
     {
-        while (diff > 0)
+        m_sign_width = 0;
+        while(*input->output)
+        {
+            ft_putchar_fd(*input->output, 1);
+            input->output++;
+            input->length++;
+            m_sign_width++;
+        }
+        while (m_sign_width < input->width)
         {
             ft_putchar_fd(input->pad, 1);
             diff--;
             input->length++;
+            m_sign_width++;
         }
     }
-    if(input->precision_flag)
+    else
     {
-        printlen = (input->precision < len ? input->precision : len);
-        while (*input->output && printlen > 0)
+        if (input->width)
         {
-            ft_putchar_fd(*input->output, 1);
-            printlen--;
-            input->output++;
-            input->length++;
-        }
-    } else
-    {
-        while (*input->output)
-        {
-            ft_putchar_fd(*input->output, 1);
-            input->output++;
-            input->length++;
-        }
-    }
+            input->length += input->width - ft_strlen(input->output);
+            while (diff > 0)
+            {
+                ft_putchar_fd(input->pad, 1);
+                diff--;
+                // input->length++;
+            }
 
+        }
+
+        if(input->precision_flag && *input->format == 's')
+        {
+            printlen = (input->precision < len ? input->precision : len);
+            while (*input->output && printlen > 0)
+            {
+                ft_putchar_fd(*input->output, 1);
+                printlen--;
+                input->output++;
+                input->length++;
+            }
+        }
+        else
+        {
+            while (*input->output)
+            {
+                ft_putchar_fd(*input->output, 1);
+                input->output++;
+                input->length++;
+            }
+            // input->length -= ft_strlen(input->output);
+        }
+    }
 
     input->format++;
 }

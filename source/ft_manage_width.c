@@ -6,7 +6,7 @@
 /*   By: asydykna <asydykna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 14:18:57 by asydykna          #+#    #+#             */
-/*   Updated: 2021/03/19 14:18:58 by asydykna         ###   ########.fr       */
+/*   Updated: 2021/03/22 11:12:21 by asydykna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,22 @@
 void ft_manage_width(t_input *input)
 {
     input->width = 0;
-    while (*input->format >= '0' && *input->format <= '9')
+    if(*input->format == '*')
+    {
+        input->width = va_arg(input->arguments, int);
+        if (input->width < 0)
+        {
+            input->width = input->width * -1;
+            input->flags[e_minus] = '1';
+        }
+        input->format++;
+    }
+    while (*input->format >= '0' && *input->format <= '9' 
+	&& *input->format != '*')
     {
         input->width *= 10;
         input->width += *input->format - '0';
         input->format++;
     }
+
 }

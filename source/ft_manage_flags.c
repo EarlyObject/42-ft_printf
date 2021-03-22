@@ -24,5 +24,7 @@ void ft_manage_flags(t_input *input)
             input->flags[e_zero] = 1;
         input->format++;
     }
+    if(input->flags[e_minus])
+        input->flags[e_zero] = 0;
     input->pad = input->flags[e_zero] ? '0' : ' ';
 }

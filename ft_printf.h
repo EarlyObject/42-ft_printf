@@ -17,6 +17,8 @@
 # include <stdarg.h>
 # include <stdlib.h>
 # include <errno.h>
+#include <string.h>
+//remove string.h later
 
 enum				e_flags
 {
