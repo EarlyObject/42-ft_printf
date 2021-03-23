@@ -28,12 +28,39 @@ void ft_manage_input(t_input *input)
     if(input->flags[e_minus])
     {
         m_sign_width = 0;
-        while(*input->output)
+        if(input->precision_flag)
         {
-            ft_putchar_fd(*input->output, 1);
-            input->output++;
-            input->length++;
-            m_sign_width++;
+            if(input->precision > len)
+            {
+                while (*input->output)
+                {
+                    ft_putchar_fd(*input->output, 1);
+                    input->output++;
+                    input->length++;
+                    m_sign_width++;
+                }
+                //m_sign_width -= input->precision - len;
+            }
+            else
+            {
+                while (m_sign_width < input->precision)
+                {
+                    ft_putchar_fd(*input->output, 1);
+                    input->output++;
+                    input->length++;
+                    m_sign_width++;
+                }
+            }
+        }
+        else
+        {
+            while(*input->output)
+            {
+                ft_putchar_fd(*input->output, 1);
+                input->output++;
+                input->length++;
+                m_sign_width++;
+            }
         }
         while (m_sign_width < input->width)
         {
@@ -47,19 +74,45 @@ void ft_manage_input(t_input *input)
     {
         if (input->width)
         {
-            input->length += input->width - ft_strlen(input->output);
-            while (diff > 0)
+            if(input-> precision_flag && input->width > input->precision)
             {
-                ft_putchar_fd(input->pad, 1);
-                diff--;
-                // input->length++;
+                int width_dif = input->width - input->precision;
+                if(input->precision > (int)ft_strlen(input->output))
+                    width_dif += input->precision - (int)ft_strlen(input->output);
+                input->length += width_dif;
+                while (width_dif > 0)
+                {
+                    ft_putchar_fd(input->pad, 1);
+                    width_dif--;
+                }
+            }
+            else
+            {
+                input->length += input->width - ft_strlen(input->output);
+                while (diff > 0)
+                {
+                    ft_putchar_fd(input->pad, 1);
+                    diff--;
+                    // input->length++;
+                }
             }
 
         }
-
         if(input->precision_flag && *input->format == 's')
         {
-            printlen = (input->precision < len ? input->precision : len);
+            if (input->precision < len)
+            {
+                printlen = input->precision;
+                if(ft_strncmp(input->output, "(null)", 6) == 0 && input->precision == 0)
+                {
+                    input->output = "";
+                    printlen = 0;
+                }
+            }
+            else
+            {
+                printlen = len;
+            }
             while (*input->output && printlen > 0)
             {
                 ft_putchar_fd(*input->output, 1);
