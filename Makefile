@@ -49,5 +49,5 @@ debug:
 	$(MAKE) -C $(LIBFT_PATH)
 	$(CC) -g $(CFLAGS) $(SRC)
 	ar rcs $(NAME) $(OBJ) $(LIBFT_PATH)/*.o
-	$(CC) -g main.c libftprintf.a -g $(LIBFT_PATH)/ft_itoa_hex.c
+	$(CC) -g main.c libftprintf.a -g $(LIBFT_PATH)/ft_itoa_hex.c $(LIBFT_PATH)/ft_itoa.c
 phony: all clean fclean re

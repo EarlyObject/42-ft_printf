@@ -14,6 +14,8 @@
 
 void ft_manage_precision(t_input *input)
 {
+    input->precision_flag = 0;
+    input->precision = 0;
     if(*input->format == '.')
     {
         input->precision_flag = 1;
@@ -36,6 +38,4 @@ void ft_manage_precision(t_input *input)
             input->format++;
         }
     }
-    else
-        input->precision_flag = 0;
 }

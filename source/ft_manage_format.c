@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
+#include <stdio.h>
 
 void ft_manage_format(t_input *input)
 {
@@ -39,7 +40,7 @@ void ft_manage_format(t_input *input)
     }
     else if (*input->format  == 'd' || *input->format == 'i')
     {
-        str_arg = ft_itoa(va_arg(input->arguments, int));
+        input->var_type[e_int] = 1;
     }
     else if (*input->format == 'u')
     {

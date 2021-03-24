@@ -48,8 +48,8 @@ typedef struct	s_input
     int             precision;
     int             length;
     char            pad;
-    int             var_type[1];
-
+    int             var_type[7];
+    int             minus_sign;
 }				t_input;
 
 int     ft_printf(const char *format, ...);
@@ -58,6 +58,8 @@ void    ft_manage_flags(t_input *input);
 void    ft_manage_width(t_input *input);
 void    ft_manage_precision(t_input *input);
 void    ft_manage_format(t_input *input);
+void    ft_print_s(t_input *input);
+void    ft_print_d(t_input *input);
 
 #endif
 
