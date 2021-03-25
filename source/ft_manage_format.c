@@ -27,6 +27,7 @@ void ft_manage_format(t_input *input)
     }
     else if (*input->format == 'c')
     {
+        input->var_type[e_char] = 1;
         char c = (char)va_arg(input->arguments, int);
         str_arg = (char *)malloc(2 * sizeof(char));
         *str_arg = c;
@@ -44,7 +45,8 @@ void ft_manage_format(t_input *input)
     }
     else if (*input->format == 'u')
     {
-        str_arg = ft_uitoa(va_arg(input->arguments, int));
+        input->var_type[e_u_int] = 1;
+       // str_arg = ft_uitoa(va_arg(input->arguments, int));
     }
     else if (*input->format == 'X' || *input->format == 'x')
     {

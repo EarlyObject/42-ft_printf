@@ -14,27 +14,27 @@
 
 void ft_manage_precision(t_input *input)
 {
-    input->precision_flag = 0;
-    input->precision = 0;
+    input->prs_flag = 0;
+    input->prs = 0;
     if(*input->format == '.')
     {
-        input->precision_flag = 1;
-        input->precision = 0;
+        input->prs_flag = 1;
+        input->prs = 0;
         input->format++;
         if(*input->format == '*')
         {
-            input->precision = va_arg(input->arguments, int);
-            if (input->precision < 0)
+            input->prs = va_arg(input->arguments, int);
+            if (input->prs < 0)
             {
-                input->precision = 0;
-                input->precision_flag = 0;
+                input->prs = 0;
+                input->prs_flag = 0;
             }
             input->format++;
         }
         while (*input->format >= '0' && *input->format <= '9')
         {
-            input->precision *= 10;
-            input->precision += *input->format - '0';
+            input->prs *= 10;
+            input->prs += *input->format - '0';
             input->format++;
         }
     }

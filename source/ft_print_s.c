@@ -24,9 +24,9 @@ void ft_print_s(t_input *input)
     if(input->flags[e_minus])
     {
         m_sign_width = 0;
-        if(input->precision_flag)
+        if(input->prs_flag)
         {
-            if(input->precision > len)
+            if(input->prs > len)
             {
                 while (*input->output)
                 {
@@ -38,7 +38,7 @@ void ft_print_s(t_input *input)
             }
             else
             {
-                while (m_sign_width < input->precision)
+                while (m_sign_width < input->prs)
                 {
                     ft_putchar_fd(*input->output, 1);
                     input->output++;
@@ -69,11 +69,11 @@ void ft_print_s(t_input *input)
     {
         if (input->width)
         {
-            if(input-> precision_flag && input->width > input->precision)
+            if(input-> prs_flag && input->width > input->prs)
             {
-                int width_dif = input->width - input->precision;
-                if(input->precision > (int)ft_strlen(input->output))
-                    width_dif += input->precision - (int)ft_strlen(input->output);
+                int width_dif = input->width - input->prs;
+                if(input->prs > (int)ft_strlen(input->output))
+                    width_dif += input->prs - (int)ft_strlen(input->output);
                 input->length += width_dif;
                 while (width_dif > 0)
                 {
@@ -92,12 +92,12 @@ void ft_print_s(t_input *input)
             }
 
         }
-        if(input->precision_flag )
+        if(input->prs_flag )
         {
-            if (input->precision < len)
+            if (input->prs < len)
             {
-                printlen = input->precision;
-                if(ft_strncmp(input->output, "(null)", 6) == 0 && input->precision == 0)
+                printlen = input->prs;
+                if(ft_strncmp(input->output, "(null)", 6) == 0 && input->prs == 0)
                 {
                     input->output = "";
                     printlen = 0;

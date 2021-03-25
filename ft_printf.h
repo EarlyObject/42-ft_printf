@@ -44,8 +44,8 @@ typedef struct	s_input
     va_list         arguments;
     int             flags[2];
     int             width;
-    int             precision_flag;
-    int             precision;
+    int             prs_flag;
+    int             prs;
     int             length;
     char            pad;
     int             var_type[7];
