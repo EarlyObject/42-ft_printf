@@ -12,117 +12,92 @@
 
 #include "../ft_printf.h"
 
-void ft_print_s(t_input *input)
+void
+    s_manage_e_minus(t_input *input, int len)
 {
-    int len;
-    int diff;
-    int printlen;
     int m_sign_width;
-    len = ft_strlen(input->output);
-    diff = input->width - len;
 
-    if(input->flags[e_minus])
-    {
-        m_sign_width = 0;
-        if(input->prs_flag)
+    m_sign_width = 0;
+    if (!input->prs_flag || input->prs > len)
+        while (*input->output)
         {
-            if(input->prs > len)
-            {
-                while (*input->output)
-                {
-                    ft_putchar_fd(*input->output, 1);
-                    input->output++;
-                    input->length++;
-                    m_sign_width++;
-                }
-            }
-            else
-            {
-                while (m_sign_width < input->prs)
-                {
-                    ft_putchar_fd(*input->output, 1);
-                    input->output++;
-                    input->length++;
-                    m_sign_width++;
-                }
-            }
-        }
-        else
-        {
-            while(*input->output)
-            {
-                ft_putchar_fd(*input->output, 1);
-                input->output++;
-                input->length++;
-                m_sign_width++;
-            }
-        }
-        while (m_sign_width < input->width)
-        {
-            ft_putchar_fd(input->pad, 1);
-            diff--;
-            input->length++;
+            ft_print_and_count(input);
             m_sign_width++;
+        }
+    else
+        while (m_sign_width < input->prs)
+        {
+            ft_print_and_count(input);
+            m_sign_width++;
+        }
+    while (m_sign_width < input->width)
+    {
+        ft_putchar_fd(input->pad, 1);
+        input->length++;
+        m_sign_width++;
+    }
+}
+
+void
+    s_manage_prs(t_input *input, int len)
+{
+    int printlen;
+
+    if (input->prs < len)
+    {
+        printlen = input->prs;
+        if(ft_strncmp(input->output, "(null)", 6) == 0 && input->prs == 0)
+        {
+            input->output = "";
+            printlen = 0;
         }
     }
     else
-    {
-        if (input->width)
-        {
-            if(input-> prs_flag && input->width > input->prs)
-            {
-                int width_dif = input->width - input->prs;
-                if(input->prs > (int)ft_strlen(input->output))
-                    width_dif += input->prs - (int)ft_strlen(input->output);
-                input->length += width_dif;
-                while (width_dif > 0)
-                {
-                    ft_putchar_fd(input->pad, 1);
-                    width_dif--;
-                }
-            }
-            else
-            {
-                input->length += input->width - ft_strlen(input->output);
-                while (diff > 0)
-                {
-                    ft_putchar_fd(input->pad, 1);
-                    diff--;
-                }
-            }
+        printlen = len;
+    while (*input->output && printlen-- > 0)
+        ft_print_and_count(input);
+}
 
-        }
-        if(input->prs_flag )
+void
+    s_manage_width(t_input *input, int len, int diff)
+{
+    int width_dif;
+
+    if(input->width)
+    {
+        if(input-> prs_flag && input->width > input->prs)
         {
-            if (input->prs < len)
-            {
-                printlen = input->prs;
-                if(ft_strncmp(input->output, "(null)", 6) == 0 && input->prs == 0)
-                {
-                    input->output = "";
-                    printlen = 0;
-                }
-            }
-            else
-            {
-                printlen = len;
-            }
-            while (*input->output && printlen > 0)
-            {
-                ft_putchar_fd(*input->output, 1);
-                printlen--;
-                input->output++;
-                input->length++;
-            }
+            width_dif = input->width - input->prs;
+            if(input->prs > len)
+                width_dif += input->prs - len;
+            input->length += width_dif;
+            while (width_dif-- > 0)
+                ft_putchar_fd(input->pad, 1);
         }
         else
         {
-            while (*input->output)
-            {
-                ft_putchar_fd(*input->output, 1);
-                input->output++;
-                input->length++;
-            }
+            input->length += input->width - len;
+            while (diff-- > 0)
+                ft_putchar_fd(input->pad, 1);
         }
     }
+    if(input->prs_flag)
+        s_manage_prs(input, len);
+    else
+        while (*input->output)
+            ft_print_and_count(input);
+}
+
+void
+    ft_print_s(t_input *input)
+{
+    int len;
+    int diff;
+
+    len = ft_strlen(input->output);
+    diff = input->width - len;
+    if(input->flags[e_minus])
+        s_manage_e_minus(input, len);
+    else
+        s_manage_width(input, len, diff);
 }

@@ -12,13 +12,8 @@
 
 #include "../ft_printf.h"
 
-void print_and_count(t_input *input) {
-    ft_putchar_fd(*input->output, 1);
-    input->output++;
-    input->length++;
-}
-
-void manage_e_minus(t_input *input, int len, int diff)
+void
+    d_manage_e_minus(t_input *input, int len, int diff)
 {
     int m_sign_width;
 
@@ -37,7 +32,7 @@ void manage_e_minus(t_input *input, int len, int diff)
         }
     }
     while(*input->output)
-        print_and_count(input);
+        ft_print_and_count(input);
     while (diff-- > 0)
     {
         ft_putchar_fd(input->pad, 1);
@@ -45,7 +40,8 @@ void manage_e_minus(t_input *input, int len, int diff)
     }
 }
 
-void manage_width_and_prs(t_input *input, int len, int diff)
+void
+    d_manage_width_and_prs(t_input *input, int len, int diff)
 {
     if (input->width)
     {
@@ -71,10 +67,11 @@ void manage_width_and_prs(t_input *input, int len, int diff)
     while (input->prs_flag && (input->prs - len++) > 0)
             ft_putchar_fd('0', 1);
     while (*input->output)
-        print_and_count(input);
+        ft_print_and_count(input);
 }
 
-void ft_print_d(t_input *input)
+void
+    ft_print_d(t_input *input)
 {
     long long num;
     int len;
@@ -93,11 +90,12 @@ void ft_print_d(t_input *input)
     else
         input->output = ft_itoa(num);
     len = ft_strlen(input->output);
-    diff = (input->prs && input->prs > len) ? input->width - input->prs : input->width - len;
+    diff = (input->prs && input->prs > len) ?
+            input->width - input->prs : input->width - len;
     if(input->minus_sign)
         diff -= 1;
     if(input->flags[e_minus])
-        manage_e_minus(input, len, diff);
+        d_manage_e_minus(input, len, diff);
     else
-        manage_width_and_prs(input, len, diff);
+        d_manage_width_and_prs(input, len, diff);
 }
