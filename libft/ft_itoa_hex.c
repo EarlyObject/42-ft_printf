@@ -17,9 +17,17 @@ char* ft_itoa_hex(unsigned long long num, char format)
     char *p;
     char base[16] = "0123456789abcdef";
     int len;
-    
+    unsigned long long tmp;
+
+    len = 0;
+    tmp = num;
+    while (tmp > 0)
+    {
+        len++;
+        tmp /= 16;
+    }
     unsigned int rmd;
-    len = format ? 8 : 14;
+   // len = format ? 8 : 14;
     if (!(p = malloc(sizeof(char) * (len + 1))))
         return (0);
     p[len--] = '\0';

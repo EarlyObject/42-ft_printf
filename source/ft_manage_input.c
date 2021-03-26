@@ -27,7 +27,8 @@ void ft_manage_input(t_input *input)
         ft_print_d(input);
     else if(input->var_type[e_u_int] == 1)
         ft_print_d(input);
-        //ft_print_u(input);
+    else if(input->var_type[e_hex] == 1)
+        ft_print_x(input);
     else
     {
         int len;

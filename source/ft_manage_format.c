@@ -30,16 +30,20 @@ void ft_manage_format(t_input *input)
         str_arg = ft_strdup(&c);
     }
     else if (*input->format  == 'p')
+    {
         unsigned long long n = va_arg(input->arguments, unsigned long long);
         str_arg = ft_itoa_hex(n, 0);
+    }
+
     else if (*input->format  == 'd' || *input->format == 'i')
         input->var_type[e_int] = 1;
     else if (*input->format == 'u')
         input->var_type[e_u_int] = 1;
     else if (*input->format == 'X' || *input->format == 'x')
     {
-        unsigned long long n = va_arg(input->arguments, unsigned int);
-        str_arg = ft_itoa_hex(n, *input->format);
+        input->var_type[e_hex] = 1;
+       /* unsigned long long n = va_arg(input->arguments, unsigned int);
+        str_arg = ft_itoa_hex(n, *input->format);*/
     }
     if(str_arg == NULL)
         str_arg = "(null)";
