@@ -6,7 +6,7 @@
 /*   By: asydykna <asydykna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 11:54:23 by asydykna          #+#    #+#             */
-/*   Updated: 2021/03/19 11:54:50 by asydykna         ###   ########.fr       */
+/*   Updated: 2021/03/26 12:08:20 by asydykna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,11 @@ void ft_manage_input(t_input *input)
     ft_manage_width(input);
     ft_manage_precision(input);
     ft_manage_format(input);
-    if(input->var_type[e_string] == 1 || input->var_type[e_char] == 1)
+    if(input->var_type[e_string] == 1)
         ft_print_s(input);
+	else if(input->var_type[e_char] == 1)
+        //ft_print_s(input);
+        ft_print_c(input);
     else if(input->var_type[e_int] == 1)
         ft_print_d(input);
     else

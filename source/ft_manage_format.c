@@ -29,9 +29,9 @@ void ft_manage_format(t_input *input)
     {
         input->var_type[e_char] = 1;
         char c = (char)va_arg(input->arguments, int);
-        str_arg = (char *)malloc(2 * sizeof(char));
-        *str_arg = c;
-        *(str_arg + 1) = '\0';
+        str_arg = ft_strdup(&c);
+      /*  *str_arg = c;
+        *(str_arg + 1) = '\0';*/
         memreserved = 1;
     }
     else if (*input->format  == 'p')

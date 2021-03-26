@@ -59,6 +59,7 @@ void    ft_manage_width(t_input *input);
 void    ft_manage_precision(t_input *input);
 void    ft_manage_format(t_input *input);
 void    ft_print_s(t_input *input);
+void    ft_print_c(t_input *input);
 void    ft_print_d(t_input *input);
 void    ft_print_and_count(t_input *input);
 
