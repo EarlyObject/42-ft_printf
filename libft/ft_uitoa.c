@@ -13,7 +13,7 @@
 #include "libft.h"
 
 static	unsigned int
-	count_len(int n)
+	count_ulen(unsigned int n)
 {
 	unsigned int len;
 
@@ -32,7 +32,7 @@ char
 	char				*p;
 	unsigned int		len;
 
-	len = count_len(n);
+	len = count_ulen(n);
 	if (!(p = malloc(sizeof(char) * (len + 1))))
 		return (0);
 	p[len] = '\0';

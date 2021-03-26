@@ -77,7 +77,11 @@ void
     int len;
     int diff;
 
-    num = (int)va_arg(input->arguments, long long);
+    if (input->var_type[e_int] == 1) {
+        num = (int) va_arg(input->arguments, long long);
+    } else {
+        num = (unsigned int) va_arg(input->arguments, long long);
+    }
     input->minus_sign = 0;
     if(num < 0)
     {
@@ -88,7 +92,7 @@ void
     if(input->prs_flag && num == 0)
         input->output = "";
     else
-        input->output = ft_itoa(num);
+        input->output = input->var_type[e_int] == 1 ? ft_itoa(num) : ft_uitoa(num);
     len = ft_strlen(input->output);
     diff = (input->prs && input->prs > len) ?
             input->width - input->prs : input->width - len;

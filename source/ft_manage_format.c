@@ -16,38 +16,26 @@
 void ft_manage_format(t_input *input)
 {
     char *str_arg;
-    int memreserved;
 
-    memreserved = 0;
     str_arg = "";
     if(*input->format == 's')
     {
-        str_arg = va_arg(input->arguments, char *);
         input->var_type[e_string] = 1;
+        str_arg = va_arg(input->arguments, char *);
     }
     else if (*input->format == 'c')
     {
         input->var_type[e_char] = 1;
         char c = (char)va_arg(input->arguments, int);
         str_arg = ft_strdup(&c);
-      /*  *str_arg = c;
-        *(str_arg + 1) = '\0';*/
-        memreserved = 1;
     }
     else if (*input->format  == 'p')
-    {
         unsigned long long n = va_arg(input->arguments, unsigned long long);
         str_arg = ft_itoa_hex(n, 0);
-    }
     else if (*input->format  == 'd' || *input->format == 'i')
-    {
         input->var_type[e_int] = 1;
-    }
     else if (*input->format == 'u')
-    {
         input->var_type[e_u_int] = 1;
-       // str_arg = ft_uitoa(va_arg(input->arguments, int));
-    }
     else if (*input->format == 'X' || *input->format == 'x')
     {
         unsigned long long n = va_arg(input->arguments, unsigned int);

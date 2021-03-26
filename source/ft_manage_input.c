@@ -25,6 +25,9 @@ void ft_manage_input(t_input *input)
         ft_print_c(input);
     else if(input->var_type[e_int] == 1)
         ft_print_d(input);
+    else if(input->var_type[e_u_int] == 1)
+        ft_print_d(input);
+        //ft_print_u(input);
     else
     {
         int len;
