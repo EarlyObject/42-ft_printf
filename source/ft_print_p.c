@@ -13,64 +13,6 @@
 #include "../ft_printf.h"
 
 void
-    p_manage_e_minus(t_input *input, int len, int diff)
-{
-    int m_sign_width;
-
-    if(input->minus_sign)
-    {
-        ft_putchar_fd('-', 1);
-        input->width--;
-    }
-    if(input->prs_flag)
-    {
-        if(input->prs > len)
-        {
-            m_sign_width = input->prs - len;
-            while (m_sign_width-- > 0)
-                ft_putchar_fd('0', 1);
-        }
-    }
-    while(*input->output)
-        ft_print_and_count(input);
-    while (diff-- > 0)
-    {
-        ft_putchar_fd(input->pad, 1);
-        input->length++;
-    }
-}
-
-void
-    p_manage_width_and_prs(t_input *input, int len, int diff)
-{
-    if (input->width)
-    {
-        if(input->prs_flag)
-            input->pad = ' ';
-        if(input->minus_sign)
-        {
-            if(input->pad == '0')
-                ft_putchar_fd('-', 1);
-            while (diff-- > 0)
-                ft_putchar_fd(input->pad, 1);
-            if(input->pad == ' ')
-                ft_putchar_fd('-', 1);
-            input->length += input->width - ft_strlen(input->output);
-        }
-        else
-            while (diff-- > 0)
-                ft_putchar_fd(input->pad, 1);
-    }
-    else
-    if(input->minus_sign)
-        ft_putchar_fd('-', 1);
-    while (input->prs_flag && (input->prs - len++) > 0)
-        ft_putchar_fd('0', 1);
-    while (*input->output)
-        ft_print_and_count(input);
-}
-
-void
     ft_print_p(t_input *input)
 {
     unsigned long long num;
@@ -104,7 +46,7 @@ void
     if(input->minus_sign)
         diff -= 1;
     if(input->flags[e_minus])
-        p_manage_e_minus(input, len, diff);
+        ft_mng_e_minus(input, len, diff);
     else
-        p_manage_width_and_prs(input, len, diff);
+        ft_mng_wp(input, len, diff);
 }
