@@ -30,22 +30,13 @@ void ft_manage_format(t_input *input)
         str_arg = ft_strdup(&c);
     }
     else if (*input->format  == 'p')
-    {
         input->var_type[e_pointer] = 1;
-       /* unsigned long long n = va_arg(input->arguments, unsigned long long);
-        str_arg = ft_itoa_hex(n, 0);*/
-    }
-
     else if (*input->format  == 'd' || *input->format == 'i')
         input->var_type[e_int] = 1;
     else if (*input->format == 'u')
         input->var_type[e_u_int] = 1;
     else if (*input->format == 'X' || *input->format == 'x')
-    {
         input->var_type[e_hex] = 1;
-       /* unsigned long long n = va_arg(input->arguments, unsigned int);
-        str_arg = ft_itoa_hex(n, *input->format);*/
-    }
     else if (*input->format  == '%')
         input->var_type[e_percentage] = 1;
     if(str_arg == NULL)

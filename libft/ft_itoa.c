@@ -13,7 +13,7 @@
 #include "libft.h"
 
 static	unsigned int
-	count_len(int n)
+	count_len(long long n)
 {
 	unsigned int len;
 
@@ -27,7 +27,7 @@ static	unsigned int
 }
 
 char
-	*ft_itoa(int n)
+	*ft_itoa(long long n)
 {
 	char				*p;
 	char				sign;

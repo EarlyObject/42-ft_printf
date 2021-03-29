@@ -21,7 +21,8 @@ void ft_manage_width(t_input *input)
         if (input->width < 0)
         {
             input->width = input->width * -1;
-            input->flags[e_minus] = '1';
+            input->flags[e_minus] = 1;
+            input->pad = ' ';
         }
         input->format++;
     }
@@ -32,5 +33,4 @@ void ft_manage_width(t_input *input)
         input->width += *input->format - '0';
         input->format++;
     }
-
 }

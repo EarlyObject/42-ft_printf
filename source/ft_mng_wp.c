@@ -27,7 +27,9 @@ void
                 ft_putchar_fd(input->pad, 1);
             if(input->pad == ' ')
                 ft_putchar_fd('-', 1);
-            input->length += input->width - ft_strlen(input->output);
+            //input->length += input->width - ft_strlen(input->output);
+           /* if(input->minus_sign)
+                input->length += 1;*/
         }
         else
             while (diff-- > 0)

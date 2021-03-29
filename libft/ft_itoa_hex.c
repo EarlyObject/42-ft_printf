@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-int get_numlen(unsigned long long int num, char format)
+int get_numlen(unsigned long long int num)
 {
     int len;
     unsigned long long tmp;
@@ -20,17 +20,13 @@ int get_numlen(unsigned long long int num, char format)
     len = 0;
     tmp = num;
     if(num != 0)
-    {
         while (tmp > 0)
         {
             len++;
             tmp /= 16;
         }
-        if(!format)
-            len += 4;
-    }
     else
-        len = 3;
+        len = 1;
     return (len);
 }
 
@@ -41,7 +37,13 @@ char* ft_itoa_hex(unsigned long long num, char format)
     int len;
     unsigned int rmd;
 
-    p = ft_make_str(len = get_numlen(num, format));
+    len = get_numlen(num);
+    if(!format)
+        len += 2;
+
+
+    p = ft_make_str(len);
+    //Здесь можно убрать, 0 лишний
     p[len--] = '\0';
     while (num >= 16 && len > 0)
     {
@@ -52,10 +54,6 @@ char* ft_itoa_hex(unsigned long long num, char format)
     *(p + len--) = (format == 'X' && num > 9) ? base[num] - 32 : base[num];
     if (!format)
     {
-        while (len > 2)
-            *(p + len--) = '0';
-        if(len == 2)
-            *(p + len--) = '1';
         *(p + len--) = 'x';
         *(p + len) = '0';
     }

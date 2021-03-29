@@ -19,7 +19,7 @@ void
     int len;
     int diff;
 
-    num = (unsigned int) va_arg(input->arguments,  unsigned long long);
+    num = (unsigned long long) va_arg(input->arguments,  void *);
     input->minus_sign = 0;
     if(num < 0)
     {
