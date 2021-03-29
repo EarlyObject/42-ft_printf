@@ -37,7 +37,7 @@ char* ft_itoa_hex(unsigned long long num, char format)
         num = num / 16;
         *(p + len--) = (format == 'X' && rmd > 9) ? base[rmd] - 32 : base[rmd];
     }
-    *(p + len--) = (format == 'X') ? base[num] - 32 : base[num];
+    *(p + len--) = (format == 'X' && num > 9) ? base[num] - 32 : base[num];
     if (!format)
     {
         while (len > 1)
@@ -45,6 +45,5 @@ char* ft_itoa_hex(unsigned long long num, char format)
         *(p + len--) = 'x';
         *(p + len--) = '0';
     }
-
     return (p);
 }
