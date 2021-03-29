@@ -12,24 +12,36 @@
 
 #include "libft.h"
 
-char* ft_itoa_hex(unsigned long long num, char format)
+int get_numlen(unsigned long long int num, char format)
 {
-    char *p;
-    char base[16] = "0123456789abcdef";
     int len;
     unsigned long long tmp;
 
     len = 0;
     tmp = num;
-    while (tmp > 0)
+    if(num != 0)
     {
-        len++;
-        tmp /= 16;
+        while (tmp > 0)
+        {
+            len++;
+            tmp /= 16;
+        }
+        if(!format)
+            len += 4;
     }
+    else
+        len = 3;
+    return (len);
+}
+
+char* ft_itoa_hex(unsigned long long num, char format)
+{
+    char *p;
+    char base[16] = "0123456789abcdef";
+    int len;
     unsigned int rmd;
-   // len = format ? 8 : 14;
-    if (!(p = malloc(sizeof(char) * (len + 1))))
-        return (0);
+
+    p = ft_make_str(len = get_numlen(num, format));
     p[len--] = '\0';
     while (num >= 16 && len > 0)
     {
@@ -40,10 +52,12 @@ char* ft_itoa_hex(unsigned long long num, char format)
     *(p + len--) = (format == 'X' && num > 9) ? base[num] - 32 : base[num];
     if (!format)
     {
-        while (len > 1)
+        while (len > 2)
             *(p + len--) = '0';
+        if(len == 2)
+            *(p + len--) = '1';
         *(p + len--) = 'x';
-        *(p + len--) = '0';
+        *(p + len) = '0';
     }
     return (p);
 }

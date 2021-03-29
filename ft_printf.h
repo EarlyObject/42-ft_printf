@@ -62,6 +62,8 @@ void    ft_print_s(t_input *input);
 void    ft_print_c(t_input *input);
 void    ft_print_d(t_input *input);
 void    ft_print_x(t_input *input);
+void    ft_print_p(t_input *input);
+void    ft_print_prcnt(t_input *input);
 void    ft_print_and_count(t_input *input);
 
 #endif

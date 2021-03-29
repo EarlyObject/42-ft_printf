@@ -29,6 +29,10 @@ void ft_manage_input(t_input *input)
         ft_print_d(input);
     else if(input->var_type[e_hex] == 1)
         ft_print_x(input);
+    else if(input->var_type[e_pointer] == 1)
+        ft_print_p(input);
+    else if(input->var_type[e_percentage] == 1)
+        ft_print_prcnt(input);
     else
     {
         int len;

@@ -31,8 +31,9 @@ void ft_manage_format(t_input *input)
     }
     else if (*input->format  == 'p')
     {
-        unsigned long long n = va_arg(input->arguments, unsigned long long);
-        str_arg = ft_itoa_hex(n, 0);
+        input->var_type[e_pointer] = 1;
+       /* unsigned long long n = va_arg(input->arguments, unsigned long long);
+        str_arg = ft_itoa_hex(n, 0);*/
     }
 
     else if (*input->format  == 'd' || *input->format == 'i')
@@ -45,6 +46,8 @@ void ft_manage_format(t_input *input)
        /* unsigned long long n = va_arg(input->arguments, unsigned int);
         str_arg = ft_itoa_hex(n, *input->format);*/
     }
+    else if (*input->format  == '%')
+        input->var_type[e_percentage] = 1;
     if(str_arg == NULL)
         str_arg = "(null)";
     input->output = str_arg;
