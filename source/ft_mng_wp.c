@@ -22,24 +22,21 @@ void
         if(input->minus_sign)
         {
             if(input->pad == '0')
-                ft_putchar_fd('-', 1);
+                ft_count_putchar(input, '-');
             while (diff-- > 0)
-                ft_putchar_fd(input->pad, 1);
+                ft_count_putchar(input, input->pad);
             if(input->pad == ' ')
-                ft_putchar_fd('-', 1);
-            //input->length += input->width - ft_strlen(input->output);
-           /* if(input->minus_sign)
-                input->length += 1;*/
+                ft_count_putchar(input, '-');
         }
         else
             while (diff-- > 0)
-                ft_putchar_fd(input->pad, 1);
+                ft_count_putchar(input, input->pad);
     }
     else
     if(input->minus_sign)
-        ft_putchar_fd('-', 1);
+        ft_count_putchar(input, '-');
     while (input->prs_flag && (input->prs - len++) > 0)
-        ft_putchar_fd('0', 1);
+        ft_count_putchar(input, '0');
     while (*input->output)
         ft_print_and_count(input);
 }

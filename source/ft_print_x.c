@@ -23,7 +23,6 @@ void
     input->minus_sign = 0;
     if(num < 0)
     {
-        input->length++;
         num *= -1;
         input->minus_sign = 1;
     }

@@ -28,8 +28,7 @@ int ft_printf(const char *format, ...)
     {
         while (*input->format && *input->format != '%')
         {
-            ft_putchar_fd(*input->format, 1);
-            input->length++;
+            ft_count_putchar(input, *input->format);
             input->format++;
         }
         if(*input->format && *input->format == '%')

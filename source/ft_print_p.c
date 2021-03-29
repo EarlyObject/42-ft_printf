@@ -23,20 +23,11 @@ void
     input->minus_sign = 0;
     if(num < 0)
     {
-        input->length++;
         num *= -1;
         input->minus_sign = 1;
     }
     input->output = ft_itoa_hex(num, 0);
-   /* if(num == 0)
-    {
-        if(input->prs_flag && input->prs == 0)
-            input->output = ft_strdup("");
-        else
-            input->output = ft_strdup("0");
-    }
-    else
-        input->output = ft_itoa_hex(num, 0);*/
+
     len = ft_strlen(input->output);
     if (input->prs && input->prs > len) {
         diff = input->width - input->prs;

@@ -19,17 +19,15 @@ void
 
     c = *input->output;
     if(input->flags[e_minus] == 1)
-        ft_putchar_fd(c, 1);
+        ft_count_putchar(input, c);
     if(input->width)
     {
-        input->length += (input->width - 1);
         input->width--;
         input->pad = (input->flags[e_zero] == 1
                 && input->flags[e_minus] != 1) ? '0' : ' ';
         while (input->width-- > 0)
-            ft_putchar_fd(input->pad, 1);
+            ft_count_putchar(input, input->pad);
     }
     if(input->flags[e_minus] != 1)
-        ft_putchar_fd(c, 1);
-    input->length++;
+        ft_count_putchar(input, c);
 }

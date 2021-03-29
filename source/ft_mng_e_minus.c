@@ -19,7 +19,7 @@ void
 
     if(input->minus_sign)
     {
-        ft_putchar_fd('-', 1);
+        ft_count_putchar(input, '-');
         input->width--;
     }
     if(input->prs_flag)
@@ -28,14 +28,11 @@ void
         {
             m_sign_width = input->prs - len;
             while (m_sign_width-- > 0)
-                ft_putchar_fd('0', 1);
+                ft_count_putchar(input, '0');
         }
     }
     while(*input->output)
         ft_print_and_count(input);
     while (diff-- > 0)
-    {
-        ft_putchar_fd(input->pad, 1);
-        input->length++;
-    }
+        ft_count_putchar(input, input->pad);
 }

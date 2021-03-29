@@ -32,8 +32,7 @@ void
         }
     while (m_sign_width < input->width)
     {
-        ft_putchar_fd(input->pad, 1);
-        input->length++;
+        ft_count_putchar(input, input->pad);
         m_sign_width++;
     }
 }
@@ -70,15 +69,13 @@ void
             width_dif = input->width - input->prs;
             if(input->prs > len)
                 width_dif += input->prs - len;
-            input->length += width_dif;
             while (width_dif-- > 0)
-                ft_putchar_fd(input->pad, 1);
+                ft_count_putchar(input, input->pad);
         }
         else
         {
-            input->length += input->width - len;
             while (diff-- > 0)
-                ft_putchar_fd(input->pad, 1);
+                ft_count_putchar(input, input->pad);
         }
     }
     if(input->prs_flag)

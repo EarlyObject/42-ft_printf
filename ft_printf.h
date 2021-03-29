@@ -68,6 +68,7 @@ void    ft_print_prcnt(t_input *input);
 void    ft_print_and_count(t_input *input);
 void    ft_mng_wp(t_input *input, int len, int diff);
 void    ft_mng_e_minus(t_input *input, int len, int diff);
+void    ft_count_putchar(t_input *input, char c);
 
 #endif
 
