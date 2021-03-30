@@ -40,10 +40,7 @@ char* ft_itoa_hex(unsigned long long num, char format)
     len = get_numlen(num);
     if(!format)
         len += 2;
-
-
     p = ft_make_str(len);
-    //Здесь можно убрать, 0 лишний
     p[len--] = '\0';
     while (num >= 16 && len > 0)
     {

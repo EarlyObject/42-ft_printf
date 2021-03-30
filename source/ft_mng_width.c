@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_manage_width.c                                  :+:      :+:    :+:   */
+/*   ft_mng_width.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asydykna <asydykna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "../ft_printf.h"
 
-void ft_manage_width(t_input *input)
+void ft_mng_width(t_input *input)
 {
     input->width = 0;
     if(*input->format == '*')

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_manage_input.c                                  :+:      :+:    :+:   */
+/*   ft_mng_input.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asydykna <asydykna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,22 +12,20 @@
 
 #include "../ft_printf.h"
 
-void ft_manage_input(t_input *input)
+void ft_mng_input(t_input *input)
 {
     int i = 0;
-    ft_manage_flags(input);
-    ft_manage_width(input);
-    ft_manage_precision(input);
+    ft_mng_flags(input);
+    ft_mng_width(input);
+    ft_mng_precision(input);
     while (i < 7)
         input->var_type[i++] = 0;
-    ft_manage_format(input);
+    ft_mng_format(input);
     if(input->var_type[e_string] == 1)
         ft_print_s(input);
-	else if(input->var_type[e_char] == 1)
+    else if(input->var_type[e_char] == 1)
         ft_print_c(input);
-    else if(input->var_type[e_int] == 1)
-        ft_print_d(input);
-    else if(input->var_type[e_u_int] == 1)
+    else if(input->var_type[e_int] == 1 || input->var_type[e_u_int] == 1)
         ft_print_d(input);
     else if(input->var_type[e_hex] == 1)
         ft_print_x(input);
@@ -35,9 +33,5 @@ void ft_manage_input(t_input *input)
         ft_print_p(input);
     else if(input->var_type[e_percentage] == 1)
         ft_print_prcnt(input);
-    else
-    {
-
-    }
     input->format++;
 }

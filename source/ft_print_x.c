@@ -16,8 +16,6 @@ void
     ft_print_x(t_input *input)
 {
     unsigned long long num;
-    int len;
-    int diff;
 
     num = (unsigned int) va_arg(input->arguments,  unsigned long long);
     input->minus_sign = 0;
@@ -35,17 +33,5 @@ void
     }
     else
         input->output = ft_itoa_hex(num, *input->format);
-    len = ft_strlen(input->output);
-    if (input->prs && input->prs > len) {
-        diff = input->width - input->prs;
-    }
-    else
-        diff =  input->width - len;
-    if(input->minus_sign)
-        diff -= 1;
-    if(input->flags[e_minus])
-        ft_mng_e_minus(input, len, diff);
-    else
-        ft_mng_wp(input, len, diff);
-
+    ft_mng_output(input);
 }

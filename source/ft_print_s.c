@@ -47,7 +47,7 @@ void
         printlen = input->prs;
         if(ft_strncmp(input->output, "(null)", 6) == 0 && input->prs == 0)
         {
-            input->output = "";
+            input->output = ft_strdup("");
             printlen = 0;
         }
     }
@@ -91,6 +91,11 @@ void
     int len;
     int diff;
 
+    input->output = va_arg(input->arguments, char *);
+    if(input->output == NULL)
+        input->output = ft_strdup("(null)");
+    else
+        input->output = ft_strdup(input->output);
     len = ft_strlen(input->output);
     diff = input->width - len;
     if(input->flags[e_minus])

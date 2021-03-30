@@ -33,8 +33,11 @@ int ft_printf(const char *format, ...)
         }
         if(*input->format && *input->format == '%')
         {
+            input->output = NULL;
             input->format++;
-            ft_manage_input(input);
+            ft_mng_input(input);
+           /* if(input->output != NULL)
+                free(input->output);*/
         }
     }
     va_end(input->arguments);

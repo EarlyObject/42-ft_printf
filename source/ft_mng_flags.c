@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_manage_flags.c                                  :+:      :+:    :+:   */
+/*   ft_mng_flags.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asydykna <asydykna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,8 @@
 
 #include "../ft_printf.h"
 
-void ft_manage_flags(t_input *input)
+void
+    ft_mng_flags(t_input *input)
 {
     input->flags[e_minus] = 0;
     input->flags[e_zero] = 0;

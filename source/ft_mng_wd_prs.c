@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_mng_wp.c                                        :+:      :+:    :+:   */
+/*   ft_mng_wd_prs.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asydykna <asydykna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -13,7 +13,7 @@
 #include "../ft_printf.h"
 
 void
-    ft_mng_wp(t_input *input, int len, int diff)
+    ft_mng_wd_prs(t_input *input, int len, int diff)
 {
     if (input->width)
     {
@@ -35,7 +35,7 @@ void
     else
     if(input->minus_sign)
         ft_count_putchar(input, '-');
-    while (input->prs_flag && (input->prs - len++) > 0)
+    while (input->prs_flag && input->prs - len++ > 0)
         ft_count_putchar(input, '0');
     while (*input->output)
         ft_print_and_count(input);

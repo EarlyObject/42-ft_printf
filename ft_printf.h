@@ -17,9 +17,6 @@
 # include <stdarg.h>
 # include <stdlib.h>
 # include <errno.h>
-#include <limits.h>
-//#include <string.h>
-//remove string.h later and limits.h
 
 enum				e_flags
 {
@@ -54,11 +51,11 @@ typedef struct	s_input
 }				t_input;
 
 int     ft_printf(const char *format, ...);
-void    ft_manage_input(t_input *input);
-void    ft_manage_flags(t_input *input);
-void    ft_manage_width(t_input *input);
-void    ft_manage_precision(t_input *input);
-void    ft_manage_format(t_input *input);
+void    ft_mng_input(t_input *input);
+void    ft_mng_flags(t_input *input);
+void    ft_mng_width(t_input *input);
+void    ft_mng_precision(t_input *input);
+void    ft_mng_format(t_input *input);
 void    ft_print_s(t_input *input);
 void    ft_print_c(t_input *input);
 void    ft_print_d(t_input *input);
@@ -66,9 +63,10 @@ void    ft_print_x(t_input *input);
 void    ft_print_p(t_input *input);
 void    ft_print_prcnt(t_input *input);
 void    ft_print_and_count(t_input *input);
-void    ft_mng_wp(t_input *input, int len, int diff);
+void    ft_mng_wd_prs(t_input *input, int len, int diff);
 void    ft_mng_e_minus(t_input *input, int len, int diff);
 void    ft_count_putchar(t_input *input, char c);
+void    ft_mng_output(t_input *input);
 
 #endif
 

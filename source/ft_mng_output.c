@@ -1,20 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_count_putchar.c                                 :+:      :+:    :+:   */
+/*   ft_mng_output.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asydykna <asydykna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/29 17:19:49 by asydykna          #+#    #+#             */
-/*   Updated: 2021/03/30 11:20:27 by asydykna         ###   ########.fr       */
+/*   Created: 2021/03/30 16:55:37 by asydykna          #+#    #+#             */
+/*   Updated: 2021/03/30 16:55:39 by asydykna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
 void
-    ft_count_putchar(t_input *input, char c)
+    ft_mng_output(t_input *input)
 {
-    write(1, &c, 1);
-    input->length++;
+    int len;
+    int diff;
+
+    len = ft_strlen(input->output);
+    diff = (input->prs && input->prs > len) ?
+           input->width - input->prs : input->width - len;
+    if(input->minus_sign)
+        diff -= 1;
+    if(input->flags[e_minus])
+        ft_mng_e_minus(input, len, diff);
+    else
+        ft_mng_wd_prs(input, len, diff);
 }

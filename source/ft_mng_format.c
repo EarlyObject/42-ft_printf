@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_manage_format.c                                 :+:      :+:    :+:   */
+/*   ft_mng_format.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asydykna <asydykna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,23 +11,18 @@
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
-#include <stdio.h>
 
-void ft_manage_format(t_input *input)
+void ft_mng_format(t_input *input)
 {
-    char *str_arg;
+    char c;
 
-    str_arg = "";
     if(*input->format == 's')
-    {
         input->var_type[e_string] = 1;
-        str_arg = va_arg(input->arguments, char *);
-    }
     else if (*input->format == 'c')
     {
-        input->var_type[e_char] = 1;
-        char c = (char)va_arg(input->arguments, int);
-        str_arg = ft_strdup(&c);
+       input->var_type[e_char] = 1;
+       c = (char)va_arg(input->arguments, int);
+       input->output = ft_strdup(&c);
     }
     else if (*input->format  == 'p')
         input->var_type[e_pointer] = 1;
@@ -39,7 +34,4 @@ void ft_manage_format(t_input *input)
         input->var_type[e_hex] = 1;
     else if (*input->format  == '%')
         input->var_type[e_percentage] = 1;
-    if(str_arg == NULL)
-        str_arg = "(null)";
-    input->output = str_arg;
 }
