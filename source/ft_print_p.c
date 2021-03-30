@@ -16,6 +16,7 @@ void
     ft_print_p(t_input *input)
 {
     unsigned long long num;
+    char *p;
 
     num = (unsigned long long) va_arg(input->arguments,  void *);
     input->minus_sign = 0;
@@ -25,5 +26,9 @@ void
         input->minus_sign = 1;
     }
     input->output = ft_itoa_hex(num, 0);
+    p = input->output;
     ft_mng_output(input);
+    if(p != NULL)
+        free(p);
+    p = NULL;
 }

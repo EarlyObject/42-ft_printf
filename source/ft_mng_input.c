@@ -14,13 +14,17 @@
 
 void ft_mng_input(t_input *input)
 {
-    int i = 0;
+    int i;
+    char *p;
+
     ft_mng_flags(input);
     ft_mng_width(input);
     ft_mng_precision(input);
+    i = 0;
     while (i < 7)
         input->var_type[i++] = 0;
     ft_mng_format(input);
+    p = input->output;
     if(input->var_type[e_string] == 1)
         ft_print_s(input);
     else if(input->var_type[e_char] == 1)
@@ -33,5 +37,7 @@ void ft_mng_input(t_input *input)
         ft_print_p(input);
     else if(input->var_type[e_percentage] == 1)
         ft_print_prcnt(input);
+    if(p != NULL)
+        free(p);
     input->format++;
 }

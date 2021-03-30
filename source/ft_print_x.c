@@ -16,6 +16,7 @@ void
     ft_print_x(t_input *input)
 {
     unsigned long long num;
+    char *p;
 
     num = (unsigned int) va_arg(input->arguments,  unsigned long long);
     input->minus_sign = 0;
@@ -33,5 +34,9 @@ void
     }
     else
         input->output = ft_itoa_hex(num, *input->format);
+    p = input->output;
     ft_mng_output(input);
+    if(p != NULL)
+        free(p);
+    p = NULL;
 }

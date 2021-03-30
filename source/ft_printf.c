@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
-#include <limits.h>
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -36,8 +35,6 @@ int ft_printf(const char *format, ...)
             input->output = NULL;
             input->format++;
             ft_mng_input(input);
-           /* if(input->output != NULL)
-                free(input->output);*/
         }
     }
     va_end(input->arguments);

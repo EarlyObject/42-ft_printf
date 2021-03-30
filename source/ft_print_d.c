@@ -16,6 +16,7 @@ void
     ft_print_d(t_input *input)
 {
     long long num;
+    char *p;
 
     if (input->var_type[e_int] == 1)
         num = (int) va_arg(input->arguments, long long);
@@ -31,5 +32,9 @@ void
         input->output = ft_strdup("");
     else
         input->output = input->var_type[e_int] == 1 ? ft_itoa(num) : ft_uitoa(num);
+    p = input->output;
     ft_mng_output(input);
+    if(p != NULL)
+        free(p);
+    p = NULL;
 }
