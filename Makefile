@@ -12,9 +12,8 @@
 
 NAME = libftprintf.a
 
-#SRC = ./libft/ft*.c ./source/ft*.c
 SRC = ./source/ft*.c
-#OBJ = $(SRC:.c=.o)
+
 OBJ = ft*.o
 
 CC = gcc
@@ -25,29 +24,23 @@ RM = rm -f
 
 LIBFT_PATH = ./libft
 
-all: $(NAME)
+INCLUDES=./includes
 
-libft:
-	
+all: $(NAME)
 
 $(NAME):
 	$(MAKE) -C $(LIBFT_PATH)
-	$(CC) -g $(CFLAGS) $(SRC)
+	$(CC) -g $(CFLAGS) $(SRC) -I$(INCLUDES)
 	ar rcs $(NAME) $(OBJ) $(LIBFT_PATH)/*.o
 
 clean:
 	$(RM) $(OBJ)
-	$(RM) ./libft/*.o
+	make clean -C $(LIBFT_PATH)
 
 fclean: clean
+	make fclean -C $(LIBFT_PATH)
 	$(RM) $(NAME)
 
-program: all
-	$(CC) main.c libftprintf.a
+re: fclean all
 
-debug:
-	$(MAKE) -C $(LIBFT_PATH)
-	$(CC) -g $(CFLAGS) $(SRC)
-	ar rcs $(NAME) $(OBJ) $(LIBFT_PATH)/*.o
-	$(CC) -g main.c libftprintf.a -g $(LIBFT_PATH)/ft_itoa_hex.c $(LIBFT_PATH)/ft_itoa.c $(LIBFT_PATH)/ft_strdup.c
-phony: all clean fclean re
+.PHONY: all clean fclean re

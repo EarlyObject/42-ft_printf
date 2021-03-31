@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf.h"
+#include "../includes/ft_printf.h"
 
 void
 	s_manage_e_minus(t_input *input, int len)

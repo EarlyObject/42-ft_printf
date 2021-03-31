@@ -10,28 +10,29 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf.h"
+#include "../includes/ft_printf.h"
 
 void
 	mng_flg_wdth_prs(t_input *input)
 {
+	int		i;
+
 	input->output = NULL;
 	input->format++;
 	ft_mng_flags(input);
 	ft_mng_width(input);
 	ft_mng_precision(input);
+	i = 0;
+	while (i < 7)
+		input->var_type[i++] = 0;
 }
 
 void
 	ft_mng_input(t_input *input)
 {
-	int		i;
 	char	*p;
 
 	mng_flg_wdth_prs(input);
-	i = 0;
-	while (i < 7)
-		input->var_type[i++] = 0;
 	ft_mng_format(input);
 	p = input->output;
 	if (input->var_type[e_string] == 1)
@@ -46,6 +47,10 @@ void
 		ft_print_p(input);
 	else if (input->var_type[e_percentage] == 1)
 		ft_print_prcnt(input);
+	else
+	{
+		return ;
+	}
 	if (p != NULL)
 		free(p);
 	input->format++;

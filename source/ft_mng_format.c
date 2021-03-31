@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf.h"
+#include "../includes/ft_printf.h"
 
 void
 	ft_mng_format(t_input *input)
@@ -35,4 +35,6 @@ void
 		input->var_type[e_hex] = 1;
 	else if (*input->format == '%')
 		input->var_type[e_percentage] = 1;
+	else
+		return ;
 }

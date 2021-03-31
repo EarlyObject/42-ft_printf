@@ -10,16 +10,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf.h"
+#include "../includes/ft_printf.h"
 
 void
 	ft_mng_output(t_input *input)
 {
-	int	len;
-	int	diff;
+	int		len;
+	int		diff;
 
 	len = ft_strlen(input->output);
-	if (input->prs && input->prs > len)
+	if (input->var_type[e_pointer] == 1 && input->prs_flag && input->prs == 0)
+	{
+		diff = input->width - 2;
+		input->output = "0x";
+	}
+	else if (input->prs && input->prs > len)
 		diff = input->width - input->prs;
 	else
 		diff = input->width - len;
