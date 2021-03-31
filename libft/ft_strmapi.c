@@ -18,7 +18,8 @@ char
 	char	*copy;
 	int		i;
 
-	if (!s || !(copy = ft_strdup(s)))
+	copy = ft_strdup(s);
+	if (!s || !copy)
 		return (NULL);
 	i = 0;
 	while (copy[i])

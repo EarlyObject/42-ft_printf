@@ -12,12 +12,15 @@
 
 #include "libft.h"
 
-static	unsigned int
+static unsigned int
 	count_ulen(unsigned int n)
 {
-	unsigned int len;
+	unsigned int	len;
 
-	len = (n <= 0) ? 1 : 0;
+	if (n <= 0)
+		len = 1;
+	else
+		len = 0;
 	while (n > 0 || n < 0)
 	{
 		n = n / 10;
@@ -29,16 +32,15 @@ static	unsigned int
 char
 	*ft_uitoa(unsigned int n)
 {
-	char				*p;
-	unsigned int		len;
+	char			*p;
+	unsigned int	len;
 
 	len = count_ulen(n);
-	if (!(p = malloc(sizeof(char) * (len + 1))))
-		return (0);
+	p = (char *)ft_calloc(len + 1, sizeof(char));
 	p[len] = '\0';
 	while (len)
 	{
-	    p[--len] = (n % 10) + '0';
+		p[--len] = (n % 10) + '0';
 		n = n / 10;
 	}
 	return (p);

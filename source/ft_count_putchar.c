@@ -6,15 +6,15 @@
 /*   By: asydykna <asydykna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 17:19:49 by asydykna          #+#    #+#             */
-/*   Updated: 2021/03/30 11:20:27 by asydykna         ###   ########.fr       */
+/*   Updated: 2021/03/31 12:37:02 by asydykna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
 void
-    ft_count_putchar(t_input *input, char c)
+	ft_count_putchar(t_input *input, char c)
 {
-    write(1, &c, 1);
-    input->length++;
+	write(1, &c, 1);
+	input->length++;
 }

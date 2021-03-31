@@ -13,12 +13,11 @@
 #include "libft.h"
 
 char
-    *ft_make_str(size_t size)
+	*ft_make_str(size_t size)
 {
-    char *p;
+	char	*p;
 
-    if (!(p = (char *)malloc(size + 1)))
-        return (NULL);
-    ft_memset(p, 0, size + 1);
-    return (p);
+	p = ft_calloc(size + 1, sizeof(char *));
+	ft_memset(p, 0, size + 1);
+	return (p);
 }

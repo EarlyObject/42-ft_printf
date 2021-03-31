@@ -23,7 +23,10 @@ char
 	if (start > (unsigned int)ft_strlen(s))
 		return (ft_calloc(1, sizeof(char)));
 	p = (char *)ft_calloc(len + 1, sizeof(char));
-	slen = len > ft_strlen(s) ? ft_strlen(s) : len;
+	if (len > ft_strlen(s))
+		slen = ft_strlen(s);
+	else
+		slen = len;
 	if (!p)
 		return (NULL);
 	ft_strlcpy(p, s + start, slen + 1);

@@ -13,12 +13,12 @@
 #include "../ft_printf.h"
 
 void
-    ft_print_prcnt(t_input *input)
+	ft_print_prcnt(t_input *input)
 {
-    char c;
+	char	c;
 
-    c = '%';
-    input->output = ft_strdup(&c);
-    ft_print_c(input);
-    free(input->output);
+	c = '%';
+	input->output = ft_strdup(&c);
+	ft_print_c(input);
+	free(input->output);
 }

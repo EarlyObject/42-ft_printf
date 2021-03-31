@@ -15,9 +15,12 @@
 static	unsigned int
 	count_len(long long n)
 {
-	unsigned int len;
+	unsigned int	len;
 
-	len = (n <= 0) ? 1 : 0;
+	if (n <= 0)
+		len = 1;
+	else
+		len = 0;
 	while (n > 0 || n < 0)
 	{
 		n = n / 10;
@@ -29,14 +32,16 @@ static	unsigned int
 char
 	*ft_itoa(long long n)
 {
-	char				*p;
-	char				sign;
-	unsigned int		len;
+	char			*p;
+	char			sign;
+	unsigned int	len;
 
-	sign = (n < 0) ? '-' : '\0';
+	if (n < 0)
+		sign = '-';
+	else
+		sign = '\0';
 	len = count_len(n);
-	if (!(p = malloc(sizeof(char) * (len + 1))))
-		return (0);
+	p = (char *)ft_calloc(sizeof(char ), len + 1);
 	p[len] = '\0';
 	while (len)
 	{

@@ -20,13 +20,15 @@ t_list
 
 	if (!lst)
 		return (NULL);
-	if (!(temp = ft_lstnew((*f)(lst->content))))
+	temp = ft_lstnew((*f)(lst->content));
+	if (!temp)
 		return (NULL);
 	first = temp;
 	while (lst->next)
 	{
 		lst = lst->next;
-		if (!(temp->next = ft_lstnew((*f)(lst->content))))
+		temp->next = ft_lstnew((*f)(lst->content));
+		if (!temp->next)
 		{
 			ft_lstclear(&first, del);
 			return (NULL);

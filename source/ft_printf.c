@@ -11,36 +11,29 @@
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
-#include <stdlib.h>
-#include <stdio.h>
 
-int ft_printf(const char *format, ...)
+int
+	ft_printf(const char *format, ...)
 {
-    t_input *input;
-    int len;
-    if(!(input = (t_input *)malloc(sizeof(t_input))))
-        return (0);
-    input->format = format;
-    va_start(input->arguments, format);
-    input->length = 0;
-    while (*input->format)
-    {
-        while (*input->format && *input->format != '%')
-        {
-            ft_count_putchar(input, *input->format);
-            input->format++;
-        }
-        if(*input->format && *input->format == '%')
-        {
-            input->output = NULL;
-            input->format++;
-            ft_mng_input(input);
-        }
-    }
-    va_end(input->arguments);
-    len = input->length;
-    free(input);
+	t_input	*input;
+	int		len;
+
+	input = (t_input *) ft_calloc(1, sizeof(t_input));
+	input->format = format;
+	va_start(input->arguments, format);
+	input->length = 0;
+	while (*input->format)
+	{
+		while (*input->format && *input->format != '%')
+		{
+			ft_count_putchar(input, *input->format);
+			input->format++;
+		}
+		if (*input->format && *input->format == '%')
+			ft_mng_input(input);
+	}
+	va_end(input->arguments);
+	len = input->length;
+	free(input);
 	return (len);
 }
-
-//TODO: implement (errno = EINVAL)?;

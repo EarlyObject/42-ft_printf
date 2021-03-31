@@ -50,14 +50,12 @@ char
 
 	i = -1;
 	rows = countrows((char *)s, c);
-	if (!s || !(temp = malloc(sizeof(char *) * (rows + 1))))
-		return (0);
+	temp = ft_calloc(rows + 1, sizeof(char *));
 	while (++i < rows)
 	{
 		while (*s == c)
 			s++;
-		if (!(temp[i] = malloc(sizeof(char) * (count_chars((char *)s, c) + 1))))
-			return (0);
+		temp[i] = ft_calloc(count_chars((char *)s, c) + 1, sizeof(char));
 		j = 0;
 		while (*s && *s != c)
 		{

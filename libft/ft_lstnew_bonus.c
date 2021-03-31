@@ -17,7 +17,8 @@ t_list
 {
 	t_list	*p;
 
-	if (!(p = (t_list*)ft_calloc(sizeof(t_list), 1)))
+	p = (t_list *)ft_calloc(sizeof (t_list), 1);
+	if (!p)
 		return (NULL);
 	p->content = content;
 	p->next = NULL;

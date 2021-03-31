@@ -13,30 +13,30 @@
 #include "../ft_printf.h"
 
 void
-    ft_print_x(t_input *input)
+	ft_print_x(t_input *input)
 {
-    unsigned long long num;
-    char *p;
+	unsigned long long	num;
+	char				*p;
 
-    num = (unsigned int) va_arg(input->arguments,  unsigned long long);
-    input->minus_sign = 0;
-    if(num < 0)
-    {
-        num *= -1;
-        input->minus_sign = 1;
-    }
-    if(num == 0)
-    {
-        if(input->prs_flag && input->prs == 0)
-            input->output = ft_strdup("");
-        else
-            input->output = ft_strdup("0");
-    }
-    else
-        input->output = ft_itoa_hex(num, *input->format);
-    p = input->output;
-    ft_mng_output(input);
-    if(p != NULL)
-        free(p);
-    p = NULL;
+	num = (unsigned int) va_arg(input->arguments, unsigned long long);
+	input->minus_sign = 0;
+	if (num < 0)
+	{
+		num *= -1;
+		input->minus_sign = 1;
+	}
+	if (num == 0)
+	{
+		if (input->prs_flag && input->prs == 0)
+			input->output = ft_strdup("");
+		else
+			input->output = ft_strdup("0");
+	}
+	else
+		input->output = ft_itoa_hex(num, *input->format);
+	p = input->output;
+	ft_mng_output(input);
+	if (p != NULL)
+		free(p);
+	p = NULL;
 }

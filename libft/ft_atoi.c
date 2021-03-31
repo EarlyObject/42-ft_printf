@@ -40,7 +40,10 @@ int
 		str++;
 	if (*str == '-' || *str == '+')
 	{
-		sign = (*str == '-') ? -1 : 1;
+		if (*str == '-')
+			sign = -1;
+		else
+			sign = 1;
 		str++;
 	}
 	if (!(*str >= '0' && *str <= '9'))
